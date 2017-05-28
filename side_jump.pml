@@ -39,7 +39,23 @@ proctype pagetable(chan ret; chan ret_address)
     ret_address?probe
     if
     :: probe.type == U -> ret_address!probe; run pagefault(ret);
-    :: ((probe.type == X) || (probe.type == NX)) -> probe.dTLB = true; ret_address!probe; run pagefault(ret);
+    :: probe.type == NX -> probe.iTLB = true; ret_address!probe; run pagefault(ret);
+    :: probe.type == X -> probe.iCACHE = true; probe.iTLB = true; ret_address!probe; run pagefault(ret);
+    fi
+}
+
+proctype TLB(chan ret; chan ret_address)
+{
+    Address probe
+    short time
+    ret?time
+    time = iTLB_ACCESS_TIME + time
+    ret!time
+    ret_address?probe
+    ret_address!probe
+    if 
+    :: probe.iCACHE == true -> run pagefault(ret)
+    :: probe.iCACHE == false -> run pagetable(ret, ret_address)
     fi
 }
 
@@ -48,13 +64,13 @@ proctype start(chan ret; chan ret_address)
     Address probe
     short time
     ret?time
-    time = dTLB_ACCESS_TIME
+    time = iCACHE_ACCESS_TIME + time
     ret!time
     ret_address?probe
     ret_address!probe
     if 
-    :: probe.dTLB == true -> run pagefault(ret)
-    :: probe.dTLB == false -> run pagetable(ret, ret_address)
+    :: probe.iCACHE == true -> run pagefault(ret)
+    :: probe.iCACHE == false -> run TLB(ret, ret_address)
     fi
 }
 
