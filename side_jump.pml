@@ -6,41 +6,55 @@
 #define PAGETABLE_MISS_TIME 1000
 #define iCACHE_ACCESS_TIME 5
 #define dCACHE_ACCESS_TIME 9
+#define EXCEPTION_TIME 200
 
-mtype = {X, NX, U};
+#define X 111222
+#define NX 222333
+#define U 333444
+
+
 typedef Address {
-    mtype type;
+    int type;
     short time;
     bool dTLB, iTLB, PageTable, iCACHE;
 }
 
 
-proctype pagetable(chan ret; short start)
+proctype pagefault(chan ret)
 {
+    Address probe
     short time
-    time = 10
-    time = start + time
+    ret?time
+    time = EXCEPTION_TIME + time
     ret!time
 }
 
-proctype TLB(chan ret; short start)
+proctype pagetable(chan ret; chan ret_address)
 {
+    Address probe
     short time
-    time = 5
-    time = start + time
-    ret!time    
+    ret?time
+    time = PAGETABLE_WALK_TIME_MAX + time
+    ret!time
+    ret_address?probe
+    if
+    :: probe.type == U -> ret_address!probe; run pagefault(ret);
+    :: ((probe.type == X) || (probe.type == NX)) -> probe.dTLB = true; ret_address!probe; run pagefault(ret);
+    fi
 }
 
-proctype start(chan ret, chan ret_address)
+proctype start(chan ret; chan ret_address)
 {
     Address probe
     short time
     ret?time
     time = dTLB_ACCESS_TIME
+    ret!time
     ret_address?probe
+    ret_address!probe
     if 
-    :: probe.dTLB == true -> ret!time
-    :: probe.dTLB == false -> run pagetable(chan ret, chan ret_address)
+    :: probe.dTLB == true -> run pagefault(ret)
+    :: probe.dTLB == false -> run pagetable(ret, ret_address)
     fi
 }
 
