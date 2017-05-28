@@ -24,18 +24,24 @@ proctype pagefault(chan ret)
 {
     Address probe
     short time
-    ret?time
-    time = EXCEPTION_TIME + time
-    ret!time
+
+    d_step {
+        ret?time
+        time = EXCEPTION_TIME + time
+        ret!time }
+
 }
 
 proctype pagetable(chan ret; chan ret_address)
 {
     Address probe
     short time
-    ret?time
-    time = PAGETABLE_WALK_TIME_MAX + time
-    ret!time
+
+    d_step {
+        ret?time
+        time = PAGETABLE_WALK_TIME_MAX + time
+        ret!time }
+
     ret_address?probe
     if
     :: probe.type == U -> ret_address!probe; run pagefault(ret);
@@ -48,14 +54,18 @@ proctype TLB(chan ret; chan ret_address)
 {
     Address probe
     short time
-    ret?time
-    time = iTLB_ACCESS_TIME + time
-    ret!time
+
+    d_step {
+        ret?time
+        time = iTLB_ACCESS_TIME + time
+        ret!time }
+
     ret_address?probe
     ret_address!probe
     if 
-    :: probe.iCACHE == true -> run pagefault(ret)
-    :: probe.iCACHE == false -> run pagetable(ret, ret_address)
+    :: (probe.iTLB == true) && (probe.type == X ) -> run pagefault(ret)
+    :: (probe.iTLB == true) && (probe.time == NX ) -> run pagetable(ret, ret_address)
+    :: probe.iTLB == false -> run pagetable(ret, ret_address)
     fi
 }
 
@@ -63,9 +73,12 @@ proctype start(chan ret; chan ret_address)
 {
     Address probe
     short time
-    ret?time
-    time = iCACHE_ACCESS_TIME + time
-    ret!time
+
+    d_step {
+        ret?time
+        time = iCACHE_ACCESS_TIME + time
+        ret!time }
+
     ret_address?probe
     ret_address!probe
     if 
@@ -89,7 +102,7 @@ proctype addressTypeInit(chan ret_address)
         if :: probe.dTLB = true :: probe.dTLB = false fi
         if :: probe.iTLB = true :: probe.iTLB = false fi
         if :: probe.PageTable = true :: probe.PageTable = false fi
-        if :: probe.iCACHE = true :: probe.iCACHE = false fi
+        if :: probe.iCACHE = false fi
     :: skip ->
         probe.type = U
         if :: probe.dTLB = false fi
