@@ -67,7 +67,7 @@ proctype start(chan ret; chan ret_address)
 }
 
 proctype addressTypeInit(chan ret_address)
-{
+{   d_step{
     Address probe
     if
     :: skip ->
@@ -89,7 +89,7 @@ proctype addressTypeInit(chan ret_address)
         if :: probe.PageTable = false fi
         if :: probe.iCACHE = false fi
     fi
-    ret_address!probe
+    ret_address!probe }
 }
 
 
