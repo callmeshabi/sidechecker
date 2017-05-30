@@ -15,7 +15,6 @@
 
 typedef Address {
     int type;
-    short time;
     bool dTLB, iTLB, PageTable, iCACHE;
 }
 
@@ -64,7 +63,7 @@ proctype TLB(chan ret; chan ret_address)
     ret_address!probe
     if 
     :: (probe.iTLB == true) && (probe.type == X ) -> run pagefault(ret)
-    :: (probe.iTLB == true) && (probe.time == NX ) -> run pagetable(ret, ret_address)
+    :: (probe.iTLB == true) && (probe.type == NX ) -> run pagetable(ret, ret_address)
     :: probe.iTLB == false -> run pagetable(ret, ret_address)
     fi
 }
@@ -75,7 +74,6 @@ proctype start(chan ret; chan ret_address)
     short time
 
     d_step {
-        ret?time
         time = iCACHE_ACCESS_TIME + time
         ret!time }
 

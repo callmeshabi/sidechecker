@@ -55,7 +55,6 @@ proctype start(chan ret; chan ret_address)
     short time
 
     d_step {
-        ret?time
         time = dTLB_ACCESS_TIME
         ret!time }
 
