@@ -1,5 +1,4 @@
-WHAT = main 
-
+WHAT ?= main 
 best: $(WHAT).tex
 	pdflatex $(WHAT).tex
 	bibtex $(WHAT)
@@ -9,8 +8,6 @@ best: $(WHAT).tex
 fast: $(WHAT).tex
 	pdflatex $(WHAT).tex
 
-$(WHAT): $(WHAT).tex $(WHAT).bib
-	pdflatex $(WHAT).tex
 
 #	dvips -t letter $(WHAT).dvi
 #	ps2pdf $(WHAT).ps

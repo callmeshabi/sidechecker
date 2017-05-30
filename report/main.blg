@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2015)
+This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: IEEEtran.bst
@@ -8,23 +8,23 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: main.bib
--- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in rojas2004tutorial
 
 Done.
 You've used 1 entry,
-            4039 wiz_defined-function locations,
-            813 strings with 7289 characters,
-and the built_in function-call counts, 410 in all, are:
+            4087 wiz_defined-function locations,
+            824 strings with 7359 characters,
+and the built_in function-call counts, 414 in all, are:
 = -- 22
 > -- 4
 < -- 0
 + -- 2
 - -- 1
 * -- 30
-:= -- 88
+:= -- 89
 add.period$ -- 2
 call.type$ -- 1
 change.case$ -- 1
@@ -33,7 +33,7 @@ cite$ -- 2
 duplicate$ -- 30
 empty$ -- 32
 format.name$ -- 1
-if$ -- 66
+if$ -- 69
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 5

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  30 MAY 2017 18:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  30 MAY 2017 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -95,24 +95,24 @@ LaTeX Font Info:    Try loading font information for U+wasy on input line 13.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-(./difference.tex) (./main.bbl) [1
+(./difference.tex) (./model.tex) (./results.tex) (./main.bbl) [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./main
 .aux) ) 
 Here is how much of TeX's memory you used:
- 682 strings out of 493014
- 8197 string characters out of 6133351
- 59505 words of memory out of 5000000
- 4264 multiletter control sequences out of 15000+600000
+ 690 strings out of 493014
+ 8277 string characters out of 6133351
+ 60505 words of memory out of 5000000
+ 4266 multiletter control sequences out of 15000+600000
  7921 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,6n,19p,159b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 23i,6n,19p,179b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
 2.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
 pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
 
-Output written on main.pdf (1 page, 47938 bytes).
+Output written on main.pdf (1 page, 51705 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
