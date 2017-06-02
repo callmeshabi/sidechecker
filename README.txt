@@ -1,4 +1,5 @@
 ➜  sidechecker git:(master) ./spin646_mac -run side_read.pml
+
 pan:1: assertion violated (time1==time2) (at depth 21)
 pan: wrote side_read.pml.trail
 
@@ -31,8 +32,9 @@ Stats on memory usage (in Megabytes):
 pan: elapsed time 0 seconds
 
 ➜  sidechecker git:(master) ./spin646_mac -run side_jump.pml
-pan:1: assertion violated (time1==time2) (at depth 21)
-pan: wrote side_jump.pml.trail
+
+pan:1: assertion violated (time1==time2) (at depth 21) 
+pan: wrote side_jump.pml.trail 
 
 (Spin Version 6.4.6 -- 2 December 2016)
 Warning: Search not completed
